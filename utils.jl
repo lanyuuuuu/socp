@@ -49,7 +49,7 @@ function scaling!(socp::SOCP_info_cpu, use_Ruiz_scaling::Bool, use_Pock_Chamboll
         temp_norm1 .= sqrt.(sum(abs, socp.A, dims=2)[:, 1])
         temp_norm1[iszero.(temp_norm1)] .= 1.0
         row_norm .*= temp_norm1
-        DA .= spdiagm(1.0 ./ temp_norm1)
+        DA = spdiagm(1.0 ./ temp_norm1)
         
         # 对矩阵 A 进行行缩放
         socp.A .= DA * socp.A 
@@ -93,6 +93,8 @@ function power_iteration_cpu(A::SparseMatrixCSC, AT::SparseMatrixCSC,
     z = Vector(randn(Random.MersenneTwister(seed), m)) .+ 1e-8 # Initial random vector
     q = zeros(Float64, m)
     ATq = zeros(Float64, n)
+    lambda_max = 0.0   # 初始化，避免未定义
+  
     for i in 1:max_iterations
         q .= z
         q ./= norm(q)
