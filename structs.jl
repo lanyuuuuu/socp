@@ -97,8 +97,6 @@ mutable struct HPRSOCP_results
     HPRSOCP_results() = new()
 end
 
-# Define the CUSPARSE SpMV structure
-
 
 # Define the workspace for the HPR-SOCP algorithm
 
@@ -223,9 +221,6 @@ mutable struct SOCP_info_cpu
     obj_constant::Float64
 end
 
-# the space for the SOCP information on the GPU
-
-
 # the space for the scaling information on the CPU
 mutable struct Scaling_info_cpu
     # the original vector l
@@ -259,4 +254,3 @@ mutable struct Scaling_info_cpu
     norm_c_org::Float64
 end
 
-# the space for the scaling information on the GPU
