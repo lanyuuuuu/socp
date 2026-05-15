@@ -307,7 +307,7 @@ function solve(socp::SOCP_info_cpu,
     scaling_info::Scaling_info_cpu,
     params::HPRSOCP_parameters)
 
-    println("HPR-LP version v0.1.3")
+    println("HPR-SOCP version v0.1")
     t_start_alg = time()
 
     ### Initialization ###
